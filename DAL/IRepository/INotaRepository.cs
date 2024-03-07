@@ -14,7 +14,7 @@ namespace Api_Notas_Aluno.DAL.IRepository
 
         Task<DTOResposta> BuscarNotasPorDisciplina(string disciplina); // Buscar notas por disciplina
 
-        Task<DTOResposta> CadastrarProva(int idAluno);
+        Task<DTOResposta> CadastrarProva(int idAluno, decimal P1, decimal P2, decimal Pt, string Trimestre, int idDisciplina, int IdClasse);
         // Cadastrar uma nova prova para um aluno
     }
 }

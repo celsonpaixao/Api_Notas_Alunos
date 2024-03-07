@@ -23,5 +23,20 @@ namespace Api_Notas_Aluno.Controllers
         {
             return await nota.BuscarTodasNotas();
         }
+
+        [HttpGet("Buscar_Notas_Por_Disciplina")]
+
+        public async Task<ActionResult<DTOResposta>> Buscar_Notas_Por_Disciplina(string disciplina)
+        {
+            return await nota.BuscarNotasPorDisciplina(disciplina);
+        }
+        [HttpPost("Cadastrar_Nota_Do_Aluno")]
+        public async Task<ActionResult<DTOResposta>> CadastrarNota(int idAluno, decimal P1, decimal P2, decimal Pt, string Trimestre, int idDisciplina, int IdClasse)
+        {
+            var resposta = await nota.CadastrarProva(idAluno, P1, P2, Pt, Trimestre, idDisciplina, IdClasse);
+            return Ok(resposta);
+        }
+
+
     }
 }
