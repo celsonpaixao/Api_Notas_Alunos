@@ -29,7 +29,7 @@ namespace Api_Notas_Aluno.DAL.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Configura as opções de conexão com o PostgreSQL
-            optionsBuilder.UseNpgsql("");
+            optionsBuilder.UseNpgsql("Host=localhost;port=5432;Database=dbescola;Username=postgres;Password=8850;");
         }
     }
 }
