@@ -3,6 +3,7 @@
 ##
 ## Get latest from `dotnet new gitignore`
 bin
+obj
 DAL/Database/DbString.cs
 # dotenv files
 .env
