@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Api_Notas_Aluno")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d30dca3b1ff9d0db6d629f7548cdd1b5147105b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f32b9d38470b5b33a68e33380a4d1492e5c1874")]
 [assembly: System.Reflection.AssemblyProductAttribute("Api_Notas_Aluno")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Api_Notas_Aluno")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
