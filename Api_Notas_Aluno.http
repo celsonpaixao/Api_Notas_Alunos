@@ -1,0 +1,6 @@
+@Api_Notas_Aluno_HostAddress = http://localhost:5282
+
+GET {{Api_Notas_Aluno_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
