@@ -24,12 +24,12 @@ namespace Api_Notas_Aluno.DAL.Database
         public DbSet<CursoClasse> CursoClasses { get; set; }
         public DbSet<Prova> Provas { get; set; }
         public DbSet<AlunoTurma> AlunosTurmas { get; set; }
-      
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Configura as opções de conexão com o PostgreSQL
-            optionsBuilder.UseNpgsql("f");
+            optionsBuilder.UseNpgsql(DbString.ConetionString());
         }
     }
 }
