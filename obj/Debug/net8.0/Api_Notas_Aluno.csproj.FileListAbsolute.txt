@@ -35,3 +35,4 @@ C:\Users\celso\desktop\Api_Notas_Aluno\obj\Debug\net8.0\refint\Api_Notas_Aluno.d
 C:\Users\celso\desktop\Api_Notas_Aluno\obj\Debug\net8.0\Api_Notas_Aluno.pdb
 C:\Users\celso\desktop\Api_Notas_Aluno\obj\Debug\net8.0\Api_Notas_Aluno.genruntimeconfig.cache
 C:\Users\celso\desktop\Api_Notas_Aluno\obj\Debug\net8.0\ref\Api_Notas_Aluno.dll
+C:\Users\celso\Desktop\Api_Notas_Aluno\obj\Debug\net8.0\Api_Notas_Aluno.sourcelink.json
