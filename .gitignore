@@ -3,7 +3,7 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
-DAL/Database/
+DAL/Database/*
 # dotenv files
 .env
 
