@@ -19,9 +19,49 @@ namespace Api_Notas_Aluno.DAL.Repository
             _notaAlunoDb = notaAlunoDbContext;
         }
 
-        public Task<DTOResposta> BuscarNotasPorCurso()
+        public async Task<DTOResposta> BuscarNotasPorCurso(string Nomecurso)
         {
-            throw new NotImplementedException();
+            DTOResposta notas = new DTOResposta();
+
+            try
+            {
+                var result = from prova in _notaAlunoDb.Provas
+                             join aluno in _notaAlunoDb.Alunos on prova.IdAluno equals aluno.Id
+                             join dispiplina in _notaAlunoDb.Disciplinas on prova.IdDisciplina equals dispiplina.Id
+                             join classe in _notaAlunoDb.Classes on prova.IdClasse equals classe.Id
+                             join classecurso in _notaAlunoDb.CursoClasses on classe.Id equals classecurso.IdClasse
+                             join curso in _notaAlunoDb.Cursos on classecurso.IdCurso equals curso.Id
+                             where curso.curso == Nomecurso
+                             select new
+                             {
+                                 Aluno = new
+                                 {
+                                     Id = aluno.Id,
+                                     Nome = aluno.PrimeiroNome,
+                                     Sobrenome = aluno.UltimoNome,
+                                     Classe = classe.classe,
+                                     Curso = curso.curso,
+                                     Prova = new
+                                     {
+                                         dispiplina = dispiplina.DisciplinaNome,
+                                         Trimestre = prova.Trimestre,
+                                         P1 = prova.P1,
+                                         P2 = prova.P2,
+                                         Pt = prova.Pt,
+                                         Media = prova.Mdf,
+                                     },
+                                 },
+                             };
+
+                notas.resposta =  result.ToList();
+                notas.mensagem = "Notas do curso " + Nomecurso;
+            }
+            catch (System.Exception ex)
+            {
+                notas.mensagem = ex.ToString();
+            }
+
+            return  notas;
         }
         public async Task<DTOResposta> BuscarNotasPorDisciplina(string disciplina)
         {
@@ -61,11 +101,52 @@ namespace Api_Notas_Aluno.DAL.Repository
         }
 
 
-
-        public Task<DTOResposta> BuscarNotasPorNomeAluno(string nomeAluno)
+        public async Task<DTOResposta> BuscarNotasPorNomeAluno(string nomeAluno)
         {
-            throw new NotImplementedException();
+            DTOResposta nota = new DTOResposta();
+            try
+            {
+                var result = from prova in _notaAlunoDb.Provas
+                             join aluno in _notaAlunoDb.Alunos on prova.IdAluno equals aluno.Id
+                             join dispiplina in _notaAlunoDb.Disciplinas on prova.IdDisciplina equals dispiplina.Id
+                             join classe in _notaAlunoDb.Classes on prova.IdClasse equals classe.Id
+                             join classecurso in _notaAlunoDb.CursoClasses on classe.Id equals classecurso.IdClasse
+                             join curso in _notaAlunoDb.Cursos on classecurso.IdCurso equals curso.Id
+                             where aluno.PrimeiroNome == nomeAluno
+                             select new
+                             {
+                                 Aluno = new
+                                 {
+                                     Id = aluno.Id,
+                                     Nome = aluno.PrimeiroNome,
+                                     Sobrenome = aluno.UltimoNome,
+                                     Classe = classe.classe,
+                                     Curso = curso.curso,
+                                     Prova = new
+                                     {
+                                         dispiplina = dispiplina.DisciplinaNome,
+                                         Trimestre = prova.Trimestre,
+                                         P1 = prova.P1,
+                                         P2 = prova.P2,
+                                         Pt = prova.Pt,
+                                         Media = prova.Mdf,
+                                     },
+                                 },
+
+                             };
+
+                nota.resposta = result;
+                nota.mensagem = "Sucesso";
+            }
+            catch (System.Exception e)
+            {
+
+                nota.mensagem = e.ToString();
+            }
+
+            return nota;
         }
+       
 
         public async Task<DTOResposta> BuscarTodasNotas()
         {
@@ -156,12 +237,5 @@ namespace Api_Notas_Aluno.DAL.Repository
 
             return resposta;
         }
-
-
-
-
-
-
-
     }
 }

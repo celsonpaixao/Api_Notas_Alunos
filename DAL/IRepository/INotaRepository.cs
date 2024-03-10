@@ -8,7 +8,7 @@ namespace Api_Notas_Aluno.DAL.IRepository
     {
         Task<DTOResposta> BuscarTodasNotas(); // Buscar todas as notas de todos os alunos
 
-        Task<DTOResposta> BuscarNotasPorCurso(); // Buscar notas por curso
+        Task<DTOResposta> BuscarNotasPorCurso(string Nomecurso); // Buscar notas por curso
 
         Task<DTOResposta> BuscarNotasPorNomeAluno(string nomeAluno); // Buscar notas por nome do aluno
 
