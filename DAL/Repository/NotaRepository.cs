@@ -231,7 +231,7 @@ namespace Api_Notas_Aluno.DAL.Repository
             }
             catch (Exception ex)
             {
-                resposta.mensagem = ex.InnerException?.Message; 
+                resposta.mensagem = ex.InnerException?.Message;
                 // resposta.excecaoDetalhada = ex.InnerException?.Message; // Adicionando detalhes da exceção interna
             }
 
