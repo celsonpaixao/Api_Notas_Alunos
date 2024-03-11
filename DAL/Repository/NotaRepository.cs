@@ -53,7 +53,7 @@ namespace Api_Notas_Aluno.DAL.Repository
                                  },
                              };
 
-                notas.resposta =  result.ToList();
+                notas.resposta = result.ToList();
                 notas.mensagem = "Notas do curso " + Nomecurso;
             }
             catch (System.Exception ex)
@@ -61,7 +61,7 @@ namespace Api_Notas_Aluno.DAL.Repository
                 notas.mensagem = ex.ToString();
             }
 
-            return  notas;
+            return notas;
         }
         public async Task<DTOResposta> BuscarNotasPorDisciplina(string disciplina)
         {
@@ -78,15 +78,23 @@ namespace Api_Notas_Aluno.DAL.Repository
                              where dispiplina.DisciplinaNome == disciplina
                              select new
                              {
-                                 Aluno = aluno,
-                                 Classe = classe.classe,
-                                 Curso = curso.curso,
-                                 dispiplina = dispiplina.DisciplinaNome,
-                                 Trimestre = prova.Trimestre,
-                                 P1 = prova.P1,
-                                 P2 = prova.P2,
-                                 Pt = prova.Pt,
-                                 Media = prova.Mdf,
+                                 Aluno = new
+                                 {
+                                     Id = aluno.Id,
+                                     Nome = aluno.PrimeiroNome,
+                                     Sobrenome = aluno.UltimoNome,
+                                     Classe = classe.classe,
+                                     Curso = curso.curso,
+                                     Prova = new
+                                     {
+                                         dispiplina = dispiplina.DisciplinaNome,
+                                         Trimestre = prova.Trimestre,
+                                         P1 = prova.P1,
+                                         P2 = prova.P2,
+                                         Pt = prova.Pt,
+                                         Media = prova.Mdf,
+                                     },
+                                 },
                              };
 
                 notas.resposta = result.ToList();
@@ -146,7 +154,7 @@ namespace Api_Notas_Aluno.DAL.Repository
 
             return nota;
         }
-       
+
 
         public async Task<DTOResposta> BuscarTodasNotas()
         {
@@ -161,15 +169,23 @@ namespace Api_Notas_Aluno.DAL.Repository
                              join curso in _notaAlunoDb.Cursos on classecurso.IdCurso equals curso.Id
                              select new
                              {
-                                 Aluno = aluno,
-                                 Classe = classe.classe,
-                                 Curso = curso.curso,
-                                 dispiplina = dispiplina.DisciplinaNome,
-                                 Trimestre = prova.Trimestre,
-                                 P1 = prova.P1,
-                                 P2 = prova.P2,
-                                 Pt = prova.Pt,
-                                 Media = prova.Mdf,
+                                 Aluno = new
+                                 {
+                                     Id = aluno.Id,
+                                     Nome = aluno.PrimeiroNome,
+                                     Sobrenome = aluno.UltimoNome,
+                                     Classe = classe.classe,
+                                     Curso = curso.curso,
+                                     Prova = new
+                                     {
+                                         dispiplina = dispiplina.DisciplinaNome,
+                                         Trimestre = prova.Trimestre,
+                                         P1 = prova.P1,
+                                         P2 = prova.P2,
+                                         Pt = prova.Pt,
+                                         Media = prova.Mdf,
+                                     },
+                                 },
                              };
 
                 notas.resposta = result;
@@ -231,7 +247,7 @@ namespace Api_Notas_Aluno.DAL.Repository
             }
             catch (Exception ex)
             {
-                resposta.mensagem = ex.InnerException?.Message; 
+                resposta.mensagem = ex.InnerException?.Message;
                 // resposta.excecaoDetalhada = ex.InnerException?.Message; // Adicionando detalhes da exceção interna
             }
 
