@@ -48,5 +48,20 @@ namespace Api_Notas_Aluno.Controllers
         {
             return await nota.BuscarNotasPorNomeAluno(nome);
         }
+
+        [HttpPut("Atualizar_Nota_Do_Aluno")]
+        public async Task<ActionResult<DTOResposta>> AtualizarProva(int idProva, decimal P1, decimal P2, decimal Pt, string Trimestre)
+        {
+            var resposta = await nota.AtualizarProva(idProva, P1, P2, Pt, Trimestre);
+            return Ok(resposta);
+        }
+        [HttpDelete("Apagar_Prova")]
+        public async Task<DTOResposta> DeletarProva(int idProva)
+        {
+            return await nota.DeletarProva(idProva);
+        }
+
+
+
     }
 }

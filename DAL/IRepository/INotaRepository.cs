@@ -16,5 +16,7 @@ namespace Api_Notas_Aluno.DAL.IRepository
 
         Task<DTOResposta> CadastrarProva(int idAluno, decimal P1, decimal P2, decimal Pt, string Trimestre, int idDisciplina, int IdClasse);
         // Cadastrar uma nova prova para um aluno
+         Task<DTOResposta> AtualizarProva(int idProva, decimal P1, decimal P2, decimal Pt, string Trimestre);
+        Task<DTOResposta> DeletarProva(int idProva);
     }
 }
