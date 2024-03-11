@@ -19,6 +19,42 @@ namespace Api_Notas_Aluno.DAL.Repository
             _notaAlunoDb = notaAlunoDbContext;
         }
 
+        public async Task<DTOResposta> AtualizarProva(int idProva, decimal P1, decimal P2, decimal Pt, string Trimestre)
+        {
+            DTOResposta resposta = new DTOResposta();
+
+            try
+            {
+                // Encontre a prova que você deseja atualizar
+                var prova = await _notaAlunoDb.Provas.FindAsync(idProva);
+                if (prova == null)
+                {
+                    resposta.mensagem = "Prova não encontrada.";
+                    return resposta;
+                }
+
+                // Atualize os campos da prova
+                prova.P1 = P1;
+                prova.P2 = P2;
+                prova.Pt = Pt;
+                prova.Trimestre = Trimestre;
+                prova.Mdf = (P1 + P2 + Pt) / 3;
+
+                // Salve as mudanças no banco de dados
+                await _notaAlunoDb.SaveChangesAsync();
+
+                resposta.mensagem = "Prova atualizada com sucesso.";
+                resposta.resposta = prova;
+            }
+            catch (Exception ex)
+            {
+                resposta.mensagem = ex.InnerException?.Message;
+            }
+
+            return resposta;
+        }
+
+
         public async Task<DTOResposta> BuscarNotasPorCurso(string Nomecurso)
         {
             DTOResposta notas = new DTOResposta();
@@ -253,5 +289,36 @@ namespace Api_Notas_Aluno.DAL.Repository
 
             return resposta;
         }
+
+        public async Task<DTOResposta> DeletarProva(int idProva)
+        {
+            DTOResposta resposta = new DTOResposta();
+
+            try
+            {
+                // Encontre a prova que você deseja deletar
+                var prova = await _notaAlunoDb.Provas.FindAsync(idProva);
+                if (prova == null)
+                {
+                    resposta.mensagem = "Prova não encontrada.";
+                    return resposta;
+                }
+
+                // Remova a prova do contexto do banco de dados
+                _notaAlunoDb.Provas.Remove(prova);
+
+                // Salve as mudanças no banco de dados
+                await _notaAlunoDb.SaveChangesAsync();
+
+                resposta.mensagem = "Prova deletada com sucesso.";
+            }
+            catch (Exception ex)
+            {
+                resposta.mensagem = ex.InnerException?.Message;
+            }
+
+            return resposta;
+        }
+
     }
 }
